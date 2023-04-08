@@ -9,6 +9,8 @@ const Exercises = ({ exercises, setExercises, bodyPart }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [exercisesPerPage] = useState(6);
 
+  console.log("exercise: ", exercises);
+
   // Pagination
   const indexOfLastExercise = currentPage * exercisesPerPage;
   const indexOfFirstExercise = indexOfLastExercise - exercisesPerPage;
@@ -22,7 +24,7 @@ const Exercises = ({ exercises, setExercises, bodyPart }) => {
     window.scrollTo({ top: 1800, behavior: "smooth" });
   };
 
-  /* useEffect(() => {
+  useEffect(() => {
     const fetchExercisesData = async () => {
       let exercisesData = [];
 
@@ -31,7 +33,10 @@ const Exercises = ({ exercises, setExercises, bodyPart }) => {
           "https://exercisedb.p.rapidapi.com/exercises",
           ExerciseOptions
         );
+        console.log("Test:", exercisesData);
       } else {
+        console.log("bodyPart", exercisesData);
+
         exercisesData = await fetchData(
           `https://exercisedb.p.rapidapi.com/exercises/bodyPart/${bodyPart}`,
           ExerciseOptions
@@ -42,7 +47,7 @@ const Exercises = ({ exercises, setExercises, bodyPart }) => {
     };
 
     fetchExercisesData();
-  }, [bodyPart]); */
+  }, [bodyPart]);
 
   return (
     <Box id="exercises" sx={{ mt: { lg: "109px" } }} mt="50px" p="20px">

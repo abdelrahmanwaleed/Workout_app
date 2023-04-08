@@ -10,32 +10,34 @@ import { ExerciseOptions, youTubeOptions, fetchData } from "../utils/fetchData";
 
 const ExerciseDetail = () => {
   const [exerciseDetail, setexerciseDetail] = useState({});
-  const [exerciseVideo, setexerciseVideo] = useState({});
+  const [exerciseVideo, setExerciseVideo] = useState([]);
   const { id } = useParams();
 
   useEffect(() => {
     const fetchExerciseData = async () => {
-      const exerciseUrlDb = "https://exercisedb.p.rapidapi.com";
-      const youTubeSearchUrl =
+      const exerciseDbUrl = "https://exercisedb.p.rapidapi.com";
+      const youtubeSearchUrl =
         "https://youtube-search-and-download.p.rapidapi.com";
 
       const exerciseDetailData = await fetchData(
-        `${exerciseUrlDb}/exercises/exercise/${id}`,
+        `${exerciseDbUrl}/exercises/exercise/${id}`,
         ExerciseOptions
       );
+
       setexerciseDetail(exerciseDetailData);
 
-      const exerciseVideoData = await fetchData(
-        `${youTubeSearchUrl}/search?query=${exerciseDetailData.name}`,
+      const exerciseVideosData = await fetchData(
+        `${youtubeSearchUrl}/search?query=${exerciseDetailData.name} exercise`,
         youTubeOptions
       );
-      setexerciseVideo(exerciseVideoData.contents);
+      console.log("what the hell wrong here??", exerciseVideosData.contents);
+      setExerciseVideo(exerciseVideosData.contents);
     };
-
     fetchExerciseData();
   }, [id]);
 
   if (!exerciseDetail) return <div>No Data</div>;
+
   return (
     <Box>
       <Detail exerciseDetail={exerciseDetail} />
