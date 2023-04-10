@@ -1,8 +1,8 @@
 import React from "react";
 import { Box, Stack, Typography } from "@mui/material";
-
+import Loader from "./Loader";
 const ExerciseVideo = ({ exerciseVideo, name }) => {
-  if (!exerciseVideo.length) return "ya...isloading";
+  <Loader />;
 
   return (
     <Box sx={{ marginTop: { lg: "200px", xs: "20px" } }} p="20px">
@@ -32,6 +32,14 @@ const ExerciseVideo = ({ exerciseVideo, name }) => {
             rel="noreferrer"
           >
             <img src={item.video.thumbnails[0].url} alt={item.video.title} />
+            <Box>
+              <Typography variant="h5" color="#333">
+                {item.video.title}
+              </Typography>
+              <Typography variant="h6" color="#333">
+                {item.video.channelName}
+              </Typography>
+            </Box>
           </a>
         ))}
       </Stack>

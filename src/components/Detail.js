@@ -7,7 +7,7 @@ import equipmentimg from "../assets/icons/equipment.png";
 
 const Detail = ({ exerciseDetail }) => {
   /* DESTRUCTURING */
-  const { bodyPart, gifUrl, target, name, equiment } = exerciseDetail;
+  const { bodyPart, gifUrl, target, name, equipment } = exerciseDetail;
 
   const extraDetail = [
     {
@@ -20,7 +20,7 @@ const Detail = ({ exerciseDetail }) => {
     },
     {
       icon: equipmentimg,
-      name: equiment,
+      name: equipment,
     },
   ];
   return (
@@ -40,8 +40,8 @@ const Detail = ({ exerciseDetail }) => {
         </Typography>
         <Typography variant="h6">
           Keep the Hard Workouts on <span>HEAT</span> <br />
-          The {name} it hit the {target} in a perefect way that will boost you
-          energy and puts you on top level training.
+          The {name} it hit the {target} in a perefect way using {equipment}{" "}
+          that will boost you energy and puts you on top level training.
         </Typography>
         {extraDetail.map((item) => (
           <Stack key={item.name} direction="row" gap="24px" alignItems="center">
